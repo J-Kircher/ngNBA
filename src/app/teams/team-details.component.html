@@ -1,0 +1,55 @@
+<mat-card>
+  <mat-card class="team-card">
+    <div fxLayout="column">
+      <div class="banner-border" [ngStyle]="{'background-color':'#'+team.lightcolor}">&nbsp;</div>
+      <div class="banner-center" [ngStyle]="{'background-color':'#'+team.darkcolor}">{{team?.city}} {{team?.name}}</div>
+      <div class="banner-border" [ngStyle]="{'background-color':'#'+team.lightcolor}">{{team?.division}}</div>
+    </div>
+  </mat-card>
+  <mat-card class="team-card">
+    <!-- <div fxLayout="row" fxLayoutAlign="space-between center"> -->
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <!-- <div class="image-container"><img src="/assets/images/{{team?.abbrev}}-L.png" [alt]="team?.name"></div> -->
+      <div class="image-container" [ngClass]="{ 'nba-champ-trophy': (teamIdx === NBAChamp) }"
+        fxLayout="row" fxLayoutAlign="space-around center">
+        <img src="/assets/images/{{team?.abbrev}}_LG.png" [ngClass]="{ 'nba-champ-champ': (teamIdx === NBAChamp) }" [alt]="team?.name">
+      </div>
+      <!-- <div class="image-container"><img src="/assets/images/{{team?.abbrev}}-R.png" [alt]="team?.name"></div> -->
+    </div>
+  </mat-card>
+  <mat-card class="team-card">
+    <table width="100%">
+      <tr [ngStyle]="{'background-color':'#'+team.lightcolor}">
+        <td>OF</td>
+        <td>DE</td>
+        <td>CO</td>
+        <td>Total</td>
+      </tr>
+      <tr [ngStyle]="{'color':'white','background-color':'#'+team.darkcolor}">
+        <td>{{team.of}}</td>
+        <td>{{team.de}}</td>
+        <td>{{team.co}}</td>
+        <td>{{total}}</td>
+      </tr>
+    </table>
+  </mat-card>
+  <mat-card class="team-card">
+    <table width="100%">
+      <tr [ngStyle]="{'background-color':'#'+team.lightcolor}">
+        <td>Wins</td>
+        <td>Losses</td>
+        <td>Pct</td>
+        <td>GF</td>
+        <td>GA</td>
+      </tr>
+      <tr [ngStyle]="{'color':'white','background-color':'#'+team.darkcolor}">
+        <td>{{team.wins}}</td>
+        <td>{{team.losses}}</td>
+        <td>{{team.pct}}</td>
+        <td>{{team.pf}}</td>
+        <td>{{team.ga}}</td>
+      </tr>
+    </table>
+  </mat-card>
+</mat-card>
+<team-schedule></team-schedule>

@@ -1,0 +1,109 @@
+@import 'src/scss/common';
+
+.dialog-title {
+  margin-bottom: 12px;
+
+  .dialog-title-text {
+    @include boldText($lgFontSize);
+  }
+  .gameday-text {
+    @include boldItalText($medFontSize);
+    margin: 6px;
+  }
+  button {
+    color: $NearWhite;
+    background-color: $NBAColor !important;
+  }
+}
+
+mat-dialog-content {
+  min-width: 420px;
+
+  mat-card {
+    background-color: $NearWhite;
+
+    .results {
+      @include boldItalText($medFontSize);
+      .visit {
+        text-align: left;
+      }
+      .home {
+        text-align: right;
+      }
+      .center {
+        text-align: center;
+      }
+      .team-city, .team-record {
+        @include normalText($medFontSize);
+      }
+      .team-name {
+        @include boldText($lgFontSize);
+      }
+      .spread {
+        @include normalText($medFontSize);
+      }
+      .normal {
+        @include normalText($medFontSize);
+        line-height: 30px;
+      }
+      .bold {
+        @include boldText($medFontSize);
+      }
+
+      .boxscore {
+        min-width: 25vw;
+        @include boldItalText($medFontSize);
+        text-align: center;
+        background: $NBAColor;
+        padding: 12px;
+        margin-top: 12px;
+        border-radius: 5px;
+
+        table {
+          border-collapse: collapse;
+          border-style: hidden;
+
+          thead {
+            @include boldText($smFontSize);
+          }
+
+          td {
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+          }
+
+          &.div-table {
+            @include normalText($medFontSize);
+            background: url(/assets/images/whiteback.gif);
+            border-radius: 5px;
+
+            .scores-row {
+              // &:hover {
+              //   border-color: $NBAColor;
+              //   background-color: $NBATrans;
+              // }
+
+              .team-info {
+                text-align: left;
+                white-space: nowrap;
+
+                .logo {
+                  float: left;
+                  height: 40px;
+                }
+                .team-city {
+                  @include normalText($medFontSize);
+                  padding-left: 5px;
+                }
+                .team-name {
+                  @include boldText($lgFontSize);
+                  padding-left: 5px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

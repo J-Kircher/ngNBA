@@ -1,0 +1,10 @@
+@import '~@angular/material/theming';
+
+$nba-theme-primary: mat-palette($mat-brown);
+$nba-theme-accent : mat-palette($mat-orange);
+$nba-theme-warn   : mat-palette($mat-red);
+$nba-theme: mat-light-theme(
+    $nba-theme-primary,
+    $nba-theme-accent,
+    $nba-theme-warn
+);

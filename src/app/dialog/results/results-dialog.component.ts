@@ -1,0 +1,55 @@
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { TeamService } from '../../service/team.service';
+import { ITeam, ISchedule, IGameResults } from '../../model/nba.model';
+import { ScheduleService } from '../../service/schedule.service';
+import { PlayoffService } from '../../service/playoff.service';
+import { getOddsText } from '../../common/odds';
+
+@Component({
+  selector: 'app-results-dialog',
+  templateUrl: './results-dialog.component.html',
+  styleUrls: ['./results-dialog.component.scss']
+})
+export class ResultsDialogComponent implements OnInit {
+  teamsArr: ITeam[] = [];
+  modalGame: ISchedule;
+  results: IGameResults[];
+  loading: boolean = true;
+
+  constructor(
+    public dialogRef: MatDialogRef<ResultsDialogComponent>,
+    private teamService: TeamService,
+    private scheduleService: ScheduleService,
+    private playoffService: PlayoffService,
+    @Inject(MAT_DIALOG_DATA) public data
+  ) { }
+
+  ngOnInit() {
+    // console.log('[results] data: ' + this.data);
+    if (this.data.playoffs) {
+      this.modalGame = this.playoffService.getGameById(this.data.id);
+    } else {
+      this.modalGame = this.scheduleService.getGameById(this.data.id);
+    }
+
+    this.teamService.getTeams().subscribe((data: ITeam[]) => {
+      this.teamsArr = data;
+      this.results = this.modalGame.gameResults;
+      this.loading = false;
+    }, (err) => {
+      console.error('[results] ngOnInit() getTeams() error: ' + err);
+    });
+  }
+
+  getOdds() {
+    // show saved game odds or calculate if there is none
+    const visit = this.teamsArr[this.modalGame.visitTeam] ? this.teamsArr[this.modalGame.visitTeam].abbrev : '';
+    const home = this.teamsArr[this.modalGame.homeTeam] ? this.teamsArr[this.modalGame.homeTeam].abbrev : '';
+    return getOddsText(this.modalGame.spread, visit, home);
+  }
+
+  onClose(): void {
+    this.dialogRef.close();
+  }
+}

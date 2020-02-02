@@ -1,0 +1,94 @@
+<div class="dialog-title" fxLayoutAlign="space-between">
+  <div class="dialog-title-text">Top Teams</div>
+  <button mat-mini-fab mat-dialog-close><mat-icon>close</mat-icon></button>
+</div>
+<mat-dialog-content>
+  <mat-tab-group mat-stretch-tabs [(selectedIndex)]="tabIndex" (selectedTabChange)="tabClicked($event)">
+    <mat-tab label="East Playoffs">
+      <div id="east">
+        <h3 class="heading">Playoff <img src="/assets/images/East.gif"> Picture</h3>
+        <div fxLayout="row">
+          <div fxLayout="column" class="division">
+            Metro
+            <div class="div-team" *ngFor="let team of EASTMetro">
+              <div class="team-info" fxFlex>
+                <img src="/assets/images/{{team.abbrev}}.png" class="logo">
+                <span class="team-city">{{team.city}}</span>
+                <span class="team-record">{{team.pct}}</span>
+                <br>
+                <span class="team-name">{{team.name}}</span>
+              </div>
+            </div>
+          </div>
+          <div fxLayout="column" class="division">
+            Atlantic
+            <div class="div-team" *ngFor="let team of EASTAtlantic">
+              <div class="team-info" fxFlex>
+                <img src="/assets/images/{{team.abbrev}}.png" class="logo">
+                <span class="team-city">{{team.city}}</span>
+                <span class="team-record">{{team.pct}}</span>
+                <br>
+                <span class="team-name">{{team.name}}</span>
+              </div>
+            </div>
+          </div>
+          <div fxLayout="column" class="division">
+            On the Outside
+            <div class="div-team" *ngFor="let team of EASTHunt">
+              <div class="team-info" fxFlex>
+                <img src="/assets/images/{{team.abbrev}}.png" class="logo">
+                <span class="team-city">{{team.city}}</span>
+                <span class="team-record">{{team.pct}}</span>
+                <br>
+                <span class="team-name">{{team.name}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="West Playoffs">
+      <div id="west">
+        <h3 class="heading">Playoff <img src="/assets/images/West.gif"> Picture</h3>
+        <div fxLayout="row">
+          <div fxLayout="column" class="division">
+            Central
+            <div class="div-team" *ngFor="let team of WESTCentral">
+              <div class="team-info" fxFlex>
+                <img src="/assets/images/{{team.abbrev}}.png" class="logo">
+                <span class="team-city">{{team.city}}</span>
+                <span class="team-record">{{team.pct}}</span>
+                <br>
+                <span class="team-name">{{team.name}}</span>
+              </div>
+            </div>
+          </div>
+          <div fxLayout="column" class="division">
+            Pacific
+            <div class="div-team" *ngFor="let team of WESTPacific">
+              <div class="team-info" fxFlex>
+                <img src="/assets/images/{{team.abbrev}}.png" class="logo">
+                <span class="team-city">{{team.city}}</span>
+                <span class="team-record">{{team.pct}}</span>
+                <br>
+                <span class="team-name">{{team.name}}</span>
+              </div>
+            </div>
+          </div>
+          <div fxLayout="column" class="division">
+            On the Outside
+            <div class="div-team" *ngFor="let team of WESTHunt">
+              <div class="team-info" fxFlex>
+                <img src="/assets/images/{{team.abbrev}}.png" class="logo">
+                <span class="team-city">{{team.city}}</span>
+                <span class="team-record">{{team.pct}}</span>
+                <br>
+                <span class="team-name">{{team.name}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</mat-dialog-content>
