@@ -10,7 +10,6 @@ import { StorageService } from '../service/storage.service';
 import { PlayNBAGame } from '../shared/PlayNBAGame';
 
 import { _SCHEDULE } from '../shared/NBASchedule2019';
-import { strict } from 'assert';
 
 @Injectable()
 export class ScheduleService {
