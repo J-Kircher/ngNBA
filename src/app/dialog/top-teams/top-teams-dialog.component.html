@@ -9,24 +9,24 @@
         <h3 class="heading">Playoff <img src="/assets/images/East.gif"> Picture</h3>
         <div fxLayout="row">
           <div fxLayout="column" class="division">
-            Metro
-            <div class="div-team" *ngFor="let team of EASTMetro">
+            Top Seeds
+            <div class="div-team" *ngFor="let team of EASTTopSeeds">
               <div class="team-info" fxFlex>
                 <img src="/assets/images/{{team.abbrev}}.png" class="logo">
                 <span class="team-city">{{team.city}}</span>
-                <span class="team-record">{{team.pct}}</span>
+                <span class="team-record">{{team.wins}} - {{team.losses}}</span>
                 <br>
                 <span class="team-name">{{team.name}}</span>
               </div>
             </div>
           </div>
           <div fxLayout="column" class="division">
-            Atlantic
-            <div class="div-team" *ngFor="let team of EASTAtlantic">
+            Bottom Seeds
+            <div class="div-team" *ngFor="let team of EASTBottomSeeds">
               <div class="team-info" fxFlex>
                 <img src="/assets/images/{{team.abbrev}}.png" class="logo">
                 <span class="team-city">{{team.city}}</span>
-                <span class="team-record">{{team.pct}}</span>
+                <span class="team-record">{{team.wins}} - {{team.losses}}</span>
                 <br>
                 <span class="team-name">{{team.name}}</span>
               </div>
@@ -38,7 +38,7 @@
               <div class="team-info" fxFlex>
                 <img src="/assets/images/{{team.abbrev}}.png" class="logo">
                 <span class="team-city">{{team.city}}</span>
-                <span class="team-record">{{team.pct}}</span>
+                <span class="team-record">{{team.wins}} - {{team.losses}}</span>
                 <br>
                 <span class="team-name">{{team.name}}</span>
               </div>
@@ -52,24 +52,24 @@
         <h3 class="heading">Playoff <img src="/assets/images/West.gif"> Picture</h3>
         <div fxLayout="row">
           <div fxLayout="column" class="division">
-            Central
-            <div class="div-team" *ngFor="let team of WESTCentral">
+            Top Seeds
+            <div class="div-team" *ngFor="let team of WESTTopSeeds">
               <div class="team-info" fxFlex>
                 <img src="/assets/images/{{team.abbrev}}.png" class="logo">
                 <span class="team-city">{{team.city}}</span>
-                <span class="team-record">{{team.pct}}</span>
+                <span class="team-record">{{team.wins}} - {{team.losses}}</span>
                 <br>
                 <span class="team-name">{{team.name}}</span>
               </div>
             </div>
           </div>
           <div fxLayout="column" class="division">
-            Pacific
-            <div class="div-team" *ngFor="let team of WESTPacific">
+            Bottom Seeds
+            <div class="div-team" *ngFor="let team of WESTBottomSeeds">
               <div class="team-info" fxFlex>
                 <img src="/assets/images/{{team.abbrev}}.png" class="logo">
                 <span class="team-city">{{team.city}}</span>
-                <span class="team-record">{{team.pct}}</span>
+                <span class="team-record">{{team.wins}} - {{team.losses}}</span>
                 <br>
                 <span class="team-name">{{team.name}}</span>
               </div>
@@ -81,7 +81,7 @@
               <div class="team-info" fxFlex>
                 <img src="/assets/images/{{team.abbrev}}.png" class="logo">
                 <span class="team-city">{{team.city}}</span>
-                <span class="team-record">{{team.pct}}</span>
+                <span class="team-record">{{team.wins}} - {{team.losses}}</span>
                 <br>
                 <span class="team-name">{{team.name}}</span>
               </div>

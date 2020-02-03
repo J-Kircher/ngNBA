@@ -21,13 +21,13 @@ export class TopTeamsDialogComponent implements OnInit, DoCheck, OnDestroy {
   tabIndex: number;
   divisions: string[] = [];
   teamsArr: ITeam[] = [];
-  EASTMetro: ITeam[] = [];
-  EASTAtlantic: ITeam[] = [];
-  EASTOthers: ITeam[] = [];
+  EASTConf: ITeam[];
+  EASTTopSeeds: ITeam[];
+  EASTBottomSeeds: ITeam[];
   EASTHunt: ITeam[] = [];
-  WESTCentral: ITeam[] = [];
-  WESTPacific: ITeam[] = [];
-  WESTOthers: ITeam[] = [];
+  WESTConf: ITeam[];
+  WESTTopSeeds: ITeam[];
+  WESTBottomSeeds: ITeam[];
   WESTHunt: ITeam[] = [];
 
   ngOnInit() {
@@ -48,76 +48,38 @@ export class TopTeamsDialogComponent implements OnInit, DoCheck, OnDestroy {
   }
 
   ngDoCheck() {
+    // Each conference is just sorted, top 8 teams are in, regardless of division
     if (this.teamsArr.length > 0) {
       this.teamsArr.forEach(team => {
         if (this.divisions.indexOf(team.division) < 0) {
           this.divisions.push(team.division);
         }
       });
-
+      this.EASTConf = [];
       this.divisions
         .filter(division => division.indexOf('East') > -1)
         .forEach((division, i) => {
           const thisDiv: ITeam[] = this.teamsArr.filter(team => (team.division === division));
-          thisDiv.sort(sortDivision);
-          if (i === 0) {
-            this.EASTMetro = thisDiv.slice(0, 3);
-            this.EASTOthers = thisDiv.slice(3);
-          } else {
-            this.EASTAtlantic = thisDiv.slice(0, 3);
-            this.EASTOthers = this.EASTOthers.concat(thisDiv.slice(3));
-          }
+          this.EASTConf = this.EASTConf.concat(thisDiv);
         });
 
-      this.EASTOthers.sort(sortConference);
+      this.EASTConf.sort(sortConference);
+      this.EASTTopSeeds = this.EASTConf.slice(0, 4);
+      this.EASTBottomSeeds = this.EASTConf.slice(4, 8);
+      this.EASTHunt = this.EASTConf.slice(8, 12);
 
-      if (sortDivision(this.EASTMetro[0], this.EASTAtlantic[0]) === 1) {
-        // Atlantic is better, they get the #2 WC
-        this.EASTMetro.push(this.EASTOthers[0]);
-        this.EASTAtlantic.push(this.EASTOthers[1]);
-      } else {
-        // Metro is better, they get the #2 WC
-        this.EASTMetro.push(this.EASTOthers[1]);
-        this.EASTAtlantic.push(this.EASTOthers[0]);
-      }
-
-      this.EASTHunt = [];
-      this.EASTHunt.push(this.EASTOthers[2]);
-      this.EASTHunt.push(this.EASTOthers[3]);
-      this.EASTHunt.push(this.EASTOthers[4]);
-      this.EASTHunt.push(this.EASTOthers[5]);
-
+      this.WESTConf = [];
       this.divisions
         .filter(division => division.indexOf('West') > -1)
         .forEach((division, i) => {
           const thisDiv: ITeam[] = this.teamsArr.filter(team => (team.division === division));
-          thisDiv.sort(sortDivision);
-          if (i === 0) {
-            this.WESTCentral = thisDiv.slice(0, 3);
-            this.WESTOthers = thisDiv.slice(3);
-          } else {
-            this.WESTPacific = thisDiv.slice(0, 3);
-            this.WESTOthers = this.WESTOthers.concat(thisDiv.slice(3));
-          }
+          this.WESTConf = this.WESTConf.concat(thisDiv);
         });
 
-      this.WESTOthers.sort(sortConference);
-
-      if (sortDivision(this.WESTCentral[0], this.WESTPacific[0]) === 1) {
-        // Pacific is better, they get the #2 WC
-        this.WESTCentral.push(this.WESTOthers[0]);
-        this.WESTPacific.push(this.WESTOthers[1]);
-      } else {
-        // Central is better, they get the #2 WC
-        this.WESTCentral.push(this.WESTOthers[1]);
-        this.WESTPacific.push(this.WESTOthers[0]);
-      }
-
-      this.WESTHunt = [];
-      this.WESTHunt.push(this.WESTOthers[2]);
-      this.WESTHunt.push(this.WESTOthers[3]);
-      this.WESTHunt.push(this.WESTOthers[4]);
-      this.WESTHunt.push(this.WESTOthers[5]);
+      this.WESTConf.sort(sortConference);
+      this.WESTTopSeeds = this.WESTConf.slice(0, 4);
+      this.WESTBottomSeeds = this.WESTConf.slice(4, 8);
+      this.WESTHunt = this.WESTConf.slice(8, 12);
     }
   }
 

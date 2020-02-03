@@ -10,7 +10,7 @@ import { sortDivision, sortConference, sortNonConference } from '../common/sort'
 import { PlayNBAGame } from '../shared/PlayNBAGame';
 
 const SCHEDULE: IScheduleBase[] = [
-  {'gameday': 'First Round', 'games': [3, 0, 11, 8, 7, 4, 15, 12, 2, 1, 10, 9, 6, 5, 14, 13]},
+  {'gameday': 'First Round', 'games': [7, 0, 15, 8, 6, 1, 14, 9, 4, 3, 12, 11, 5, 2, 13, 10]},
   {'gameday': 'Second Round', 'games': []}, // 8 teams/4 series
   {'gameday': 'Conference Championship', 'games': []}, // 4 teams/2 series
   {'gameday': 'NBA Championship', 'games': []} // 2 teams/1 series
@@ -129,8 +129,6 @@ export class PlayoffService {
     }
   }
 
-  // TODO
-  // Add a bool to swap home and visit for games 3, 4 and 6
   addToSchedule(series: IPlayoffSeries): number {
     // console.log('[playoff.service] addToSchedule() ' + series.gameday + ', ' + series.visitTeam + ' at ' + series.homeTeam);
     const seriesGameNo = series.homeWins + series.visitWins;
@@ -213,22 +211,22 @@ export class PlayoffService {
       // Sort to have the correct home/visit
       if (sortConference(this.teamService.getTeamByIndex(SCHEDULE[nextRound].games[0]),
         this.teamService.getTeamByIndex(SCHEDULE[nextRound].games[1])) === -1) {
-        // console.log('Swapping East Metro');
+        // console.log('Swapping top left bracket');
         swap(SCHEDULE[nextRound].games, 0, 1);
       }
       if (sortConference(this.teamService.getTeamByIndex(SCHEDULE[nextRound].games[2]),
         this.teamService.getTeamByIndex(SCHEDULE[nextRound].games[3])) === -1) {
-        // console.log('Swapping West Central');
+        // console.log('Swapping top right bracket');
         swap(SCHEDULE[nextRound].games, 2, 3);
       }
       if (sortConference(this.teamService.getTeamByIndex(SCHEDULE[nextRound].games[4]),
         this.teamService.getTeamByIndex(SCHEDULE[nextRound].games[5])) === -1) {
-        // console.log('Swapping East Atlantic');
+        // console.log('Swapping bottom left bracket');
         swap(SCHEDULE[nextRound].games, 4, 5);
       }
       if (sortConference(this.teamService.getTeamByIndex(SCHEDULE[nextRound].games[6]),
         this.teamService.getTeamByIndex(SCHEDULE[nextRound].games[7])) === -1) {
-        // console.log('Swapping West Pacific');
+        // console.log('Swapping bottom right bracket');
         swap(SCHEDULE[nextRound].games, 6, 7);
       }
     }
@@ -611,9 +609,7 @@ export class PlayoffService {
       // console.log('[playoff.service] getEASTPlayoffTeams() Need to build EASTPlayoffTeams');
       const divisions: string[] = [];
       let teamsArr: ITeam[] = [];
-      let EASTMetro: ITeam [] = [];
-      let EASTAtlantic: ITeam [] = [];
-      let EASTOthers: ITeam [] = [];
+      let EASTConf: ITeam[];
 
       this.EASTPlayoffTeams = [];
 
@@ -627,40 +623,24 @@ export class PlayoffService {
           }
         });
 
+        EASTConf = [];
         divisions
-          .filter(division => division.indexOf('East') > -1 )
+          .filter(division => division.indexOf('East') > -1)
           .forEach((division, i) => {
             const thisDiv: ITeam[] = teamsArr.filter(team => (team.division === division));
-            thisDiv.sort(sortDivision);
-            if (i === 0) {
-              EASTMetro = thisDiv.slice(0, 3);
-              EASTOthers = thisDiv.slice(3);
-            } else {
-              EASTAtlantic = thisDiv.slice(0, 3);
-              EASTOthers = EASTOthers.concat(thisDiv.slice(3));
-            }
+            EASTConf = EASTConf.concat(thisDiv);
           });
 
-        EASTOthers.sort(sortConference);
+        EASTConf.sort(sortConference);
 
-        if (sortDivision(EASTMetro[0], EASTAtlantic[0]) === 1) {
-          // Atlantic is better, they get the #2 WC
-          EASTMetro.push(EASTOthers[0]);
-          EASTAtlantic.push(EASTOthers[1]);
-        } else {
-          // Metro is better, they get the #2 WC
-          EASTMetro.push(EASTOthers[1]);
-          EASTAtlantic.push(EASTOthers[0]);
-        }
-
-        this.EASTPlayoffTeams.push(this.teamService.getTeamIndex(EASTMetro[0].abbrev));
-        this.EASTPlayoffTeams.push(this.teamService.getTeamIndex(EASTMetro[1].abbrev));
-        this.EASTPlayoffTeams.push(this.teamService.getTeamIndex(EASTMetro[2].abbrev));
-        this.EASTPlayoffTeams.push(this.teamService.getTeamIndex(EASTMetro[3].abbrev));
-        this.EASTPlayoffTeams.push(this.teamService.getTeamIndex(EASTAtlantic[0].abbrev));
-        this.EASTPlayoffTeams.push(this.teamService.getTeamIndex(EASTAtlantic[1].abbrev));
-        this.EASTPlayoffTeams.push(this.teamService.getTeamIndex(EASTAtlantic[2].abbrev));
-        this.EASTPlayoffTeams.push(this.teamService.getTeamIndex(EASTAtlantic[3].abbrev));
+        this.EASTPlayoffTeams.push(this.teamService.getTeamIndex(EASTConf[0].abbrev));
+        this.EASTPlayoffTeams.push(this.teamService.getTeamIndex(EASTConf[1].abbrev));
+        this.EASTPlayoffTeams.push(this.teamService.getTeamIndex(EASTConf[2].abbrev));
+        this.EASTPlayoffTeams.push(this.teamService.getTeamIndex(EASTConf[3].abbrev));
+        this.EASTPlayoffTeams.push(this.teamService.getTeamIndex(EASTConf[4].abbrev));
+        this.EASTPlayoffTeams.push(this.teamService.getTeamIndex(EASTConf[5].abbrev));
+        this.EASTPlayoffTeams.push(this.teamService.getTeamIndex(EASTConf[6].abbrev));
+        this.EASTPlayoffTeams.push(this.teamService.getTeamIndex(EASTConf[7].abbrev));
         // console.table(this.EASTPlayoffTeams);
       });
     }
@@ -673,9 +653,7 @@ export class PlayoffService {
       // console.log('[playoff.service] getWESTPlayoffTeams() Need to build WESTPlayoffTeams');
       const divisions: string[] = [];
       let teamsArr: ITeam[] = [];
-      let WESTCentral: ITeam [] = [];
-      let WESTPacific: ITeam [] = [];
-      let WESTOthers: ITeam [] = [];
+      let WESTConf: ITeam[];
 
       this.WESTPlayoffTeams = [];
 
@@ -689,40 +667,24 @@ export class PlayoffService {
           }
         });
 
+        WESTConf = [];
         divisions
-          .filter(division => division.indexOf('West') > -1 )
+          .filter(division => division.indexOf('West') > -1)
           .forEach((division, i) => {
             const thisDiv: ITeam[] = teamsArr.filter(team => (team.division === division));
-            thisDiv.sort(sortDivision);
-            if (i === 0) {
-              WESTCentral = thisDiv.slice(0, 3);
-              WESTOthers = thisDiv.slice(3);
-            } else {
-              WESTPacific = thisDiv.slice(0, 3);
-              WESTOthers = WESTOthers.concat(thisDiv.slice(3));
-            }
+            WESTConf = WESTConf.concat(thisDiv);
           });
 
-        WESTOthers.sort(sortConference);
+        WESTConf.sort(sortConference);
 
-        if (sortDivision(WESTCentral[0], WESTPacific[0]) === 1) {
-          // Pacific is better, they get the #2 WC
-          WESTCentral.push(WESTOthers[0]);
-          WESTPacific.push(WESTOthers[1]);
-        } else {
-          // Central is better, they get the #2 WC
-          WESTCentral.push(WESTOthers[1]);
-          WESTPacific.push(WESTOthers[0]);
-        }
-
-        this.WESTPlayoffTeams.push(this.teamService.getTeamIndex(WESTCentral[0].abbrev));
-        this.WESTPlayoffTeams.push(this.teamService.getTeamIndex(WESTCentral[1].abbrev));
-        this.WESTPlayoffTeams.push(this.teamService.getTeamIndex(WESTCentral[2].abbrev));
-        this.WESTPlayoffTeams.push(this.teamService.getTeamIndex(WESTCentral[3].abbrev));
-        this.WESTPlayoffTeams.push(this.teamService.getTeamIndex(WESTPacific[0].abbrev));
-        this.WESTPlayoffTeams.push(this.teamService.getTeamIndex(WESTPacific[1].abbrev));
-        this.WESTPlayoffTeams.push(this.teamService.getTeamIndex(WESTPacific[2].abbrev));
-        this.WESTPlayoffTeams.push(this.teamService.getTeamIndex(WESTPacific[3].abbrev));
+        this.WESTPlayoffTeams.push(this.teamService.getTeamIndex(WESTConf[0].abbrev));
+        this.WESTPlayoffTeams.push(this.teamService.getTeamIndex(WESTConf[1].abbrev));
+        this.WESTPlayoffTeams.push(this.teamService.getTeamIndex(WESTConf[2].abbrev));
+        this.WESTPlayoffTeams.push(this.teamService.getTeamIndex(WESTConf[3].abbrev));
+        this.WESTPlayoffTeams.push(this.teamService.getTeamIndex(WESTConf[4].abbrev));
+        this.WESTPlayoffTeams.push(this.teamService.getTeamIndex(WESTConf[5].abbrev));
+        this.WESTPlayoffTeams.push(this.teamService.getTeamIndex(WESTConf[6].abbrev));
+        this.WESTPlayoffTeams.push(this.teamService.getTeamIndex(WESTConf[7].abbrev));
         // console.table(this.WESTPlayoffTeams);
       });
     }
