@@ -16,9 +16,7 @@ export class StandingsChartComponent implements OnInit {
   schedulesArr: ISchedule[][] = [];
   myChart: Chart = []; // This will hold the chart info
   chartStats = []; // This will contain the labels and data for the chart
-  chartStyle: boolean = true; // true: avgPPG, false: avgTeamPts
-  avgPPG: number = 0;
-  avgTeamPts: number = 0;
+  chartStyle: boolean = true; // true: netWL, false: totalW
 
   constructor(
     private teamService: TeamService,
@@ -79,8 +77,6 @@ export class StandingsChartComponent implements OnInit {
       this.myChart.chart.destroy();
     }
 
-    const avgPPG = this.getAverage('ppg', this.chartDivision);
-
     this.teamsArr.forEach(team => {
       if (team.division === this.chartDivision || this.chartDivision === 'all') {
 
@@ -88,31 +84,31 @@ export class StandingsChartComponent implements OnInit {
         teamStats.push(0); // To allow x axis to start at 0
         teamIndex = this.teamsArr.findIndex(t => t.abbrev === team.abbrev);
 
-        let teamPct = 0;
+        let teamNetWL = 0;
+        let teamTotalW = 0;
         const teamSchedule: ISchedule[] = this.schedulesArr[teamIndex];
         teamSchedule.forEach((game, idx) => {
           if (game.quarter === 'F') {
             if (teamIndex === game.homeTeam) {
               if (game.homeScore > game.visitScore) {
-                  teamPct += 2;
+                teamNetWL += 1;
+                teamTotalW += 1;
               } else {
-                if (game.overtime) {
-                  teamPct += 1;
-                }
+                teamNetWL -= 1;
               }
             } else {
               if (game.visitScore > game.homeScore) {
-                  teamPct += 2;
+                teamNetWL += 1;
+                teamTotalW += 1;
               } else {
-                if (game.overtime) {
-                  teamPct += 1;
-                }
+                teamNetWL -= 1;
               }
             }
             if (this.chartStyle) {
-              teamPct = Math.round((teamPct -= avgPPG) * 100) / 100;
+              teamStats.push(teamNetWL);
+            } else {
+              teamStats.push(teamTotalW);
             }
-            teamStats.push(teamPct);
           }
         });
 
@@ -197,46 +193,9 @@ export class StandingsChartComponent implements OnInit {
       }
     });
 
-    let chartAvg;
-    if (this.chartStyle) {
-      chartAvg = this.getAverage('ppg', this.chartDivision);
-    } else {
-      chartAvg = this.getAverage('teamPts', this.chartDivision);
-    }
-
-    // Average Line
-    _data.push({
-      label: 'Average',
-      data: Array.apply(null, new Array(_maxGames)).map(Number.prototype.valueOf, chartAvg),
-      fill: false,
-      radius: 0,
-      backgroundColor: 'rgba(0,0,0,0.1)'
-    });
-
     return {
       labels: _label,
       datasets: _data
     };
-  }
-
-  getAverage(type: string, division?: string): number {
-    // console.log('standings-chart] getAverage() type: ' + type);
-
-    // if (type === 'ppg') {
-    //   const totPts = this.teamsArr
-    //     .filter(team => division === 'all' || team.division === division)
-    //     .reduce((a, b) => (a + (b['pct'] || 0)), 0);
-    //   const totGames = this.teamsArr
-    //     .filter(team => division === 'all' || team.division === division)
-    //     .reduce((a, b) => (a + (b['wins'] || 0) + (b['losses'] || 0) + (b['otl'] || 0)), 0);
-    //   this.avgPPG = Math.round((totPts / totGames) * 100) / 100;
-    //   return this.avgPPG;
-    // } else {
-    //   const totPts = this.chartStats.reduce((a, b) => a + (b['pct'] || 0), 0);
-    //   this.avgTeamPts = Math.round((totPts / this.chartStats.length) * 10) / 10;
-    //   return this.avgTeamPts;
-    // }
-
-    return 0;
   }
 }
