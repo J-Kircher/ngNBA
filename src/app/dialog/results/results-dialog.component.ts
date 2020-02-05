@@ -35,10 +35,21 @@ export class ResultsDialogComponent implements OnInit {
 
     this.teamService.getTeams().subscribe((data: ITeam[]) => {
       this.teamsArr = data;
-      this.results = this.modalGame.gameResults;
-      this.loading = false;
     }, (err) => {
       console.error('[results] ngOnInit() getTeams() error: ' + err);
+    }, () => {
+      this.results = JSON.parse(JSON.stringify(this.modalGame.gameResults));
+      if (this.modalGame.overtime) {
+        const OTindexStart = 5;
+        while (this.results.length > OTindexStart) {
+          const last = this.results.length - 1;
+          const prev = last - 1;
+          this.results[prev].homeScore += this.results[last].homeScore;
+          this.results[prev].visitScore += this.results[last].visitScore;
+          this.results.pop();
+        }
+      }
+      this.loading = false;
     });
   }
 
