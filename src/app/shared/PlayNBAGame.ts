@@ -9,7 +9,7 @@ export class PlayNBAGame {
   static playNBAGame(game: ISchedule, vTeam: ITeam, hTeam: ITeam, simFast: boolean): Observable<ISchedule> {
     // console.log('[PlayNBAGame] playNBAGame() started');
 
-    const timeout = simFast ? 10 : 500;
+    const timeout = simFast ? 10 : 1000;
     const subject = new Subject<ISchedule>();
     const gameCounter = 4;
     const gameMax = 6;
