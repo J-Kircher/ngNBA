@@ -29,8 +29,8 @@
         <td>{{team.losses}}</td>
         <td *ngIf="currentGame > 0">{{team.pct}}</td>
         <td *ngIf="currentGame === 0">{{team.total}}</td>
-        <td>{{ myRound(team.pf / (team.wins + team.losses), 1) }}</td>
-        <td>{{ myRound(team.pa / (team.wins + team.losses), 1) }}</td>
+        <td>{{ getAvg(team, 'PF') }}</td>
+        <td>{{ getAvg(team, 'PA') }}</td>
         <td>{{team.homewins}}-{{team.homelosses}}</td>
         <td>{{team.visitwins}}-{{team.visitlosses}}</td>
         <td>{{team.divwins}}-{{team.divlosses}}</td>

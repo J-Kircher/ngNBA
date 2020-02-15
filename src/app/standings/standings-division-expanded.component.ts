@@ -54,6 +54,20 @@ export class StandingsDivisionExpandedComponent implements OnInit, DoCheck {
     this.router.navigate(['/teams/' + abbrev]);
   }
 
+  getAvg(team: ITeam, type: string) {
+    let avg = 0;
+    const games = team.wins + team.losses;
+      if (games === 0) {
+      return 0;
+    }
+    if (type === 'PF') {
+      avg = this.myRound(team.pf / games, 1);
+    } else {
+      avg = this.myRound(team.pa / games, 1);
+    }
+    return avg;
+  }
+
   myRound(value: number, precision: number): number {
     return Math.round(value * Math.pow(10, precision)) / Math.pow(10, precision);
   }
