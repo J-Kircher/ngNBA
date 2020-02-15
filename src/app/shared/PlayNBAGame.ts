@@ -90,7 +90,7 @@ export class PlayNBAGame {
   static determineScore(self: any, teamToCalc: string, homeTeam: ITeam, visitTeam: ITeam, quarter: string): number {
 
     let score: number = 0;
-    const extra = quarter === 'OT' ? 10 : 24;
+    const extra = quarter === 'OT' ? 10 : 28;
 
     if (teamToCalc === 'h') {
       const homeTry = Math.floor(Math.random() * homeTeam.of);
