@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { TeamService } from '../service/team.service';
-import { PlayoffService } from '../service/playoff.service';
+import { TeamService } from '@app/service/team.service';
+import { PlayoffService } from '@app/service/playoff.service';
 import { ITeam } from '../model/nba.model';
 
 @Component({

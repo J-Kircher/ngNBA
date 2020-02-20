@@ -4,12 +4,12 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 
 import { ISchedule, IScheduleBase, ITeam, IGameResults } from '../model/nba.model';
-import { TeamService } from '../service/team.service';
-import { GameService } from '../service/game.service';
-import { StorageService } from '../service/storage.service';
-import { PlayNBAGame } from '../shared/PlayNBAGame';
+import { TeamService } from '@app/service/team.service';
+import { GameService } from '@app/service/game.service';
+import { StorageService } from '@app/service/storage.service';
+import { PlayNBAGame } from '@app/shared/PlayNBAGame';
 
-import { _SCHEDULE } from '../shared/NBASchedule2019';
+import { _SCHEDULE } from '@app/shared/NBASchedule2019';
 
 @Injectable()
 export class ScheduleService {

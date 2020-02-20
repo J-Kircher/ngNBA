@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TeamService } from '../service/team.service';
+import { TeamService } from '@app/service/team.service';
 import { ITeam } from '../model/nba.model';
-import { listAnimation } from '../shared/animations';
+import { listAnimation } from '@app/shared/animations';
 
 @Component({
   selector: 'team-list',

@@ -1,9 +1,9 @@
 import { Component, OnInit, DoCheck, OnDestroy, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatTabChangeEvent } from '@angular/material';
 
-import { TeamService } from '../../service/team.service';
+import { TeamService } from '@app/service/team.service';
 import { ITeam } from '../../model/nba.model';
-import { sortDivision, sortConference } from '../../common/sort';
+import { sortDivision, sortConference } from '@app/common/sort';
 
 @Component({
   selector: 'app-top-teams-dialog',

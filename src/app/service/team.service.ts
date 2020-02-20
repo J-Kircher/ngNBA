@@ -5,10 +5,10 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
 import { ITeam } from '../model/nba.model';
-import { ConfigService } from '../service/config.service';
-import { StorageService } from '../service/storage.service';
+import { ConfigService } from '@app/service/config.service';
+import { StorageService } from '@app/service/storage.service';
 
-import { _TEAMS } from '../shared/NBATeams2019';
+import { _TEAMS } from '@app/shared/NBATeams2019';
 
 @Injectable()
 export class TeamService {

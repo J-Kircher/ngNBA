@@ -3,11 +3,11 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ISchedule, IScheduleBase, ITeam, IGameResults, IPlayoffSeries } from '../model/nba.model';
-import { TeamService } from '../service/team.service';
-import { GameService } from '../service/game.service';
-import { StorageService } from '../service/storage.service';
-import { sortDivision, sortConference, sortNonConference } from '../common/sort';
-import { PlayNBAGame } from '../shared/PlayNBAGame';
+import { TeamService } from '@app/service/team.service';
+import { GameService } from '@app/service/game.service';
+import { StorageService } from '@app/service/storage.service';
+import { sortDivision, sortConference, sortNonConference } from '@app/common/sort';
+import { PlayNBAGame } from '@app/shared/PlayNBAGame';
 
 const SCHEDULE: IScheduleBase[] = [
   {'gameday': 'First Round', 'games': [7, 0, 15, 8, 6, 1, 14, 9, 4, 3, 12, 11, 5, 2, 13, 10]},
