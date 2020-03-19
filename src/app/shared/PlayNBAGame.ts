@@ -53,8 +53,8 @@ export class PlayNBAGame {
           theLoop(i);
         } else {
           if (game.visitScore === game.homeScore) {
-            // console.log('[PlayNBAGame] playNBAGame() Game: ' + game.id + ' - FORECD OVERTIME!');
-            game.homeScore += 3;
+            // console.log('[PlayNBAGame] playNBAGame() Game: ' + game.id + ' - FORCED OVERTIME!');
+            game.homeScore += 2;
             game.gameResults.push({ visitTeam: game.visitTeam, visitScore: vScore,
               homeTeam: game.homeTeam, homeScore: hScore, quarter: 'OT' });
             }
