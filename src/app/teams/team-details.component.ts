@@ -33,8 +33,8 @@ export class TeamDetailsComponent implements OnInit {
       this.team = this.teamService.getTeam(params['abbrev']);
       this.total = this.team.of + this.team.de + this.team.co;
       this.teamExt = JSON.parse(JSON.stringify(this.team));
-      this.teamExt.apf = this.myRound(this.team.pf / (this.team.wins + this.team.losses), 1);
-      this.teamExt.apa = this.myRound(this.team.pa / (this.team.wins + this.team.losses), 1);
+      this.teamExt.apf = this.team.pf === 0 ? 0 : this.myRound(this.team.pf / (this.team.wins + this.team.losses), 1);
+      this.teamExt.apa = this.team.pa === 0 ? 0 : this.myRound(this.team.pa / (this.team.wins + this.team.losses), 1);
     });
     this.playoffService.NBAChamp$.subscribe(data => this.NBAChamp = data);
     this.attColumns = ['of', 'de', 'co', 'total'];
