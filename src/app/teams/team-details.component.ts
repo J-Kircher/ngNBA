@@ -40,6 +40,7 @@ export class TeamDetailsComponent implements OnInit {
     this.attColumns = ['of', 'de', 'co', 'total'];
     this.statsColumns = ['wins', 'losses', 'apf', 'apa'];
     this.dataSource = new MatTableDataSource([this.teamExt]);
+    window.scrollTo(0, 0);
   }
 
   myRound(value: number, precision: number): number {
