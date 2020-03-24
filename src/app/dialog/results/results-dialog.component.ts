@@ -51,6 +51,8 @@ export class ResultsDialogComponent implements OnInit {
       }
       this.loading = false;
     });
+
+    console.log(this.modalGame);
   }
 
   getOdds() {
@@ -58,6 +60,14 @@ export class ResultsDialogComponent implements OnInit {
     const visit = this.teamsArr[this.modalGame.visitTeam] ? this.teamsArr[this.modalGame.visitTeam].abbrev : '';
     const home = this.teamsArr[this.modalGame.homeTeam] ? this.teamsArr[this.modalGame.homeTeam].abbrev : '';
     return getOddsText(this.modalGame.spread, visit, home);
+  }
+
+  getWinner() {
+    if (this.modalGame.homeScore > this.modalGame.visitScore) {
+      return this.teamsArr[this.modalGame.homeTeam].name;
+    } else {
+      return this.teamsArr[this.modalGame.visitTeam].name;
+    }
   }
 
   onClose(): void {

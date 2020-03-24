@@ -69,6 +69,11 @@
             </tbody>
           </table>
         </div>
+        <div class="winner">
+          <div *ngIf="modalGame.quarter === 'F'">
+            <span>{{getWinner()}} Win</span>
+          </div>
+        </div>
       </div>
     </mat-card-content>
   </mat-card>

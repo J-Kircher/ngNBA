@@ -114,6 +114,15 @@ mat-dialog-content {
           }
         }
       }
+      .winner {
+        height: 25px;
+        width: 100%;
+        background: $NBAColor;
+        border-radius: 5px;
+        text-align: center;
+        line-height: 25px;
+        margin-top: 12px;
+      }
     }
   }
 }
