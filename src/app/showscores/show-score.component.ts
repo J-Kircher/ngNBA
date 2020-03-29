@@ -14,6 +14,8 @@ export class ShowScoreComponent implements OnInit {
   teamsArr: ITeam[] = [];
   loading: boolean = true;
   seriesGameNo: number = 0;
+  showQuarter: boolean = false;
+  timerSet: boolean = false;
 
   constructor(
     private teamService: TeamService,
@@ -34,8 +36,21 @@ export class ShowScoreComponent implements OnInit {
     });
   }
 
-  showQuarter() {
-    return !['F', 'OT'].includes(this.score.quarter);
+  checkQuarter() {
+    if (this.score.quarter === '3') {
+      // Game is almost over, start the timer
+      if (!this.timerSet) {
+        this.timerSet = true;
+        setTimeout(() => {
+          this.showQuarter = false;
+        }, 4005);
+      }
+    } else if (this.score.quarter === '1') {
+      // Game is starting, show the quarter
+      this.showQuarter = true;
+    }
+    // If the game was already over, then show nothing
+    return this.showQuarter || !['F', 'OT'].includes(this.score.quarter);
   }
 
   showPlayoffGame() {
