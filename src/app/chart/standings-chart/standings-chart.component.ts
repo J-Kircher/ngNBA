@@ -137,7 +137,7 @@ export class StandingsChartComponent implements OnInit {
       options: {
         responsive: true,
         legend: {
-          display: true,
+          display: (chartDivision !== 'all'),
           position: 'bottom'
         },
         elements: {
