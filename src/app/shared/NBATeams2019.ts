@@ -1,4 +1,4 @@
-import { ITeam } from '../model/nba.model';
+import { ITeam } from '@app/model/nba.model';
 
 export const _TEAMS: ITeam[] = [
   { 'city': 'Boston',        'name': 'Celtics',       'abbrev': 'BOS', 'lightcolor': 'FFFFFF', 'darkcolor': '008C4A', 'chartcolor': '008C4A', 'division': 'East Atlantic',  'of': 8, 'de': 9, 'co': 7 },

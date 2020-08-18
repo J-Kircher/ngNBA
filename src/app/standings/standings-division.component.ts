@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { TeamService } from '@app/service/team.service';
 import { ScheduleService } from '@app/service/schedule.service';
-import { ITeam } from '../model/nba.model';
+import { ITeam } from '@app/model/nba.model';
 import { sortDivision, sortDivisionByTotal } from '@app/common/sort';
 
 @Component({

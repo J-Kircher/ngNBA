@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
-import { ISchedule, IScheduleBase, ITeam, IGameResults, IPlayoffSeries } from '../model/nba.model';
+import { ISchedule, IScheduleBase, ITeam, IGameResults, IPlayoffSeries } from '@app/model/nba.model';
 import { TeamService } from '@app/service/team.service';
 import { GameService } from '@app/service/game.service';
 import { StorageService } from '@app/service/storage.service';

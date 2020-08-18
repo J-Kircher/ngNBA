@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TeamService } from '@app/service/team.service';
-import { ITeam, ISchedule, IGameResults } from '../../model/nba.model';
+import { ITeam, ISchedule, IGameResults } from '@app/model/nba.model';
 import { ScheduleService } from '@app/service/schedule.service';
 import { PlayoffService } from '@app/service/playoff.service';
 import { getOddsText } from '@app/common/odds';

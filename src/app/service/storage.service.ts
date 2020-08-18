@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ISchedule, ITeam, IPlayoffSeries } from '../model/nba.model';
+import { ISchedule, ITeam, IPlayoffSeries } from '@app/model/nba.model';
 import { Observable, Subject } from 'rxjs';
 
 @Injectable()

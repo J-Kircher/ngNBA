@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TeamService } from '@app/service/team.service';
 import { ScheduleService } from '@app/service/schedule.service';
 import { PlayoffService } from '@app/service/playoff.service';
-import { ITeam, ISchedule, IGameResults } from '../model/nba.model';
+import { ITeam, ISchedule, IGameResults } from '@app/model/nba.model';
 import { MatchupDialogComponent } from '@app/dialog/matchup/matchup-dialog.component';
 import { ResultsDialogComponent } from '@app/dialog/results/results-dialog.component';
 import { listAnimation } from '@app/shared/animations';

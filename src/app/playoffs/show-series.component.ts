@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TeamService } from '@app/service/team.service';
-import { ITeam, IPlayoffSeries } from '../model/nba.model';
+import { ITeam, IPlayoffSeries } from '@app/model/nba.model';
 import { calculateOdds } from '@app/common/odds';
 
 @Component({

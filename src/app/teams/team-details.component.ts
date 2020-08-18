@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { TeamService } from '@app/service/team.service';
 import { PlayoffService } from '@app/service/playoff.service';
-import { ITeam } from '../model/nba.model';
+import { ITeam } from '@app/model/nba.model';
 
 @Component({
   selector: 'team-details', // This html tag is not necessary since we will be navigating to this

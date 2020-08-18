@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 
 import { TeamService } from '@app/service/team.service';
-import { ITeam } from '../../model/nba.model';
+import { ITeam } from '@app/model/nba.model';
 import { sortDivision, sortConference } from '@app/common/sort';
 
 @Component({

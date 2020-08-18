@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ScheduleService } from '@app/service/schedule.service';
 import { PlayoffService } from '@app/service/playoff.service';
 import { ResultsDialogComponent } from '@app/dialog/results/results-dialog.component';
-import { ISchedule } from '../model/nba.model';
+import { ISchedule } from '@app/model/nba.model';
 import { listAnimation } from '@app/shared/animations';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ISchedule } from '../model/nba.model';
+import { ISchedule } from '@app/model/nba.model';
 import { ScheduleService } from '@app/service/schedule.service';
 import { ScheduleDayService } from '@app/service/schedule.day.service';
 

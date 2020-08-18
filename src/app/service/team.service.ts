@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 
-import { ITeam } from '../model/nba.model';
+import { ITeam } from '@app/model/nba.model';
 import { ConfigService } from '@app/service/config.service';
 import { StorageService } from '@app/service/storage.service';
 

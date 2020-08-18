@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { TeamService } from '@app/service/team.service';
-import { ITeam, ISchedule, IGameResults } from '../model/nba.model';
+import { ITeam, ISchedule, IGameResults } from '@app/model/nba.model';
 import { PlayoffService } from '@app/service/playoff.service';
 import { MatchupDialogComponent } from '@app/dialog/matchup/matchup-dialog.component';
 import { ResultsDialogComponent } from '@app/dialog/results/results-dialog.component';
