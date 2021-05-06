@@ -84,7 +84,7 @@ mat-dialog-content {
 
           &.div-table {
             @include normalText($medFontSize);
-            background: url(/assets/images/whiteback.jpg);
+            background: url('../../../assets/images/whiteback.jpg');
             border-radius: 5px;
 
             .scores-row {
