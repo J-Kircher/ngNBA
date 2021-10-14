@@ -14,6 +14,7 @@ export class ScheduleCalenderComponent implements OnInit, AfterContentInit {
   gameDay: string;
   gamesArr: ISchedule[] = [];
   scheduleYear: number = 2021;
+  scheduleYears: string = '2021-22';
   fullSchedule: ISchedule[];
 
   monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
