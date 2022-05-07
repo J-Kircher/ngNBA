@@ -176,7 +176,7 @@ export class StandingsChartComponent implements OnInit {
                     dsMeta.data[len]._model.pointStyle = img;
                   }
                 };
-                img.src = '/assets/images/' + ds.abbrev + '_LG.png';
+                img.src = './assets/images/' + ds.abbrev + '_LG.png';
               }
             }
           });
