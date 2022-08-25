@@ -7,7 +7,7 @@ import { GameService } from '@app/service/game.service';
 import { StorageService } from '@app/service/storage.service';
 import { PlayNBAGame } from '@app/shared/PlayNBAGame';
 
-import { _SCHEDULE } from '@app/shared/NBASchedule2021';
+import { _SCHEDULE } from '@app/shared/NBASchedule2022';
 
 @Injectable()
 export class ScheduleService {

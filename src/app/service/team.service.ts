@@ -6,7 +6,7 @@ import { ITeam } from '@app/model/nba.model';
 import { ConfigService } from '@app/service/config.service';
 import { StorageService } from '@app/service/storage.service';
 
-import { _TEAMS } from '@app/shared/NBATeams2021';
+import { _TEAMS } from '@app/shared/NBATeams2022';
 
 @Injectable()
 export class TeamService {
