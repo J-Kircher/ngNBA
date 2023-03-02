@@ -58,6 +58,7 @@ mat-dialog-content {
       }
       .bold {
         @include boldText($medFontSize);
+        line-height: 30px;
       }
 
       .boxscore {
